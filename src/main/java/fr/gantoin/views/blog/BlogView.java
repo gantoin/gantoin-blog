@@ -18,7 +18,7 @@ public class BlogView extends HorizontalLayout {
 
     public BlogView() {
         name = new TextField("Your name");
-        sayHello = new Button("Say hello");
+        sayHello = new Button("Say test");
         sayHello.addClickListener(e -> {
             Notification.show("Hello " + name.getValue());
         });
