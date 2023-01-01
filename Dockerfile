@@ -1,4 +1,4 @@
-FROM maven:3.6.0-jdk-11-slim AS build
+FROM maven:3.8.6-jdk-11-slim AS build
 ENV HOME=/home/user/app
 RUN mkdir -p $HOME
 WORKDIR $HOME
