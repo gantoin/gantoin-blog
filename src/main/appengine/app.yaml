@@ -1,0 +1,14 @@
+runtime: java11
+env: flex
+
+
+env_variables:
+  SPRING_PROFILES_ACTIVE: "cloud-gcp"
+  TWITTER_BEARER_TOKEN: ""
+
+handlers:
+  - url: /.*
+    script: this field is required, but ignored
+    secure: always
+manual_scaling:
+  instances: 1
