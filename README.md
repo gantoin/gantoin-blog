@@ -61,3 +61,9 @@ Once the Docker image is correctly built, you can test it locally using
 ```
 docker run -p 8080:8080 gantoin-blog:latest
 ```
+
+## Deploy new version on Google Cloud Platform:
+
+```
+mvn package appengine:deploy -Pproduction -Dapp.deploy.projectId=gantoin-blog -Dapp.deploy.version=X
+```
