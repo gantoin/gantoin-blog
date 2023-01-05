@@ -18,7 +18,7 @@ public class ArticleController {
     }
 
     @GetMapping("/refresh-gists")
-    @Scheduled(cron = "0 * * * *") // every hour
+    @Scheduled(cron = "* 0 * * * *") // Every hour
     public void refreshGists() {
         try {
             articleService.downloadArticles();
