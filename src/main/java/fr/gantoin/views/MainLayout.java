@@ -1,6 +1,8 @@
 package fr.gantoin.views;
 
 
+import java.util.Random;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.dependency.NpmPackage;
@@ -27,6 +29,7 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Padding;
 import com.vaadin.flow.theme.lumo.LumoUtility.TextColor;
 import com.vaadin.flow.theme.lumo.LumoUtility.Whitespace;
 import com.vaadin.flow.theme.lumo.LumoUtility.Width;
+
 import fr.gantoin.views.blog.BlogView;
 import fr.gantoin.views.contactme.ContactmeView;
 import fr.gantoin.views.myprojects.MyProjectsView;
@@ -65,21 +68,16 @@ public class MainLayout extends AppLayout {
             return view;
         }
 
-        /**
-         * Simple wrapper to create icons using LineAwesome iconset. See
-         * https://icons8.com/line-awesome
-         */
         @NpmPackage(value = "line-awesome", version = "1.3.0")
         public static class LineAwesomeIcon extends Span {
-            public LineAwesomeIcon(String lineawesomeClassnames) {
+            public LineAwesomeIcon(String lineAwesomeClassnames) {
                 // Use Lumo classnames for suitable font styling
                 addClassNames(FontSize.LARGE, TextColor.SECONDARY);
-                if (!lineawesomeClassnames.isEmpty()) {
-                    addClassNames(lineawesomeClassnames);
+                if (!lineAwesomeClassnames.isEmpty()) {
+                    addClassNames(lineAwesomeClassnames);
                 }
             }
         }
-
     }
 
     public MainLayout() {
@@ -93,23 +91,35 @@ public class MainLayout extends AppLayout {
         Div layout = new Div();
         layout.addClassNames(Display.FLEX, AlignItems.CENTER, Padding.Horizontal.LARGE);
 
-        H1 appName = new H1("gantoin-blog");
+        String[] emojis = {"😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "😗", "😙",
+                "😚", "😇", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "😑", "😶", "🙄", "😏", "😣", "😥", "😮", "🤐", "😯", "😪",
+                "😫", "😴", "😌", "😛", "😜", "😝", "🤤", "😒", "😓", "😔", "😕", "🙃", "🤑", "😲", "☹️", "🙁", "😖", "😞",
+                "😟", "😤", "😢", "😭", "😦", "😧", "😨", "😩", "🤯", "😬", "😰", "😱", "😳", "🤪", "😵", "😡", "😠", "🤬",
+                "😷", "🤒", "🤕", "🤢", "🤮", "🤧", "😇", "🤠", "🤡", "🤥", "🤫", "🤭", "🧐", "🤓", "😈", "👿", "👹", "👺",
+                "💀", "👻", "👽", "🤖", "💩", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾"};
+
+        String randomEmoji = emojis[new Random().nextInt(emojis.length)]
+                + emojis[new Random().nextInt(emojis.length)]
+                + emojis[new Random().nextInt(emojis.length)]
+                + emojis[new Random().nextInt(emojis.length)]
+                + emojis[new Random().nextInt(emojis.length)];
+
+        H1 appName = new H1(randomEmoji + " Antoine Gauthier (");
+        Span gantoin = new Span("@gantoin");
+        gantoin.addClassNames(TextColor.PRIMARY, FontSize.LARGE, FontWeight.BOLD);
+        gantoin.addClickListener(e -> getUI().ifPresent(ui -> ui.getPage().executeJs("window.open('https://github.com/gantoin', '_blank')")));
+        appName.add(gantoin);
+        appName.add(") - Blog");
         appName.addClassNames(Margin.Vertical.MEDIUM, Margin.End.AUTO, FontSize.LARGE);
         layout.add(appName);
-
         Nav nav = new Nav();
         nav.addClassNames(Display.FLEX, Overflow.AUTO, Padding.Horizontal.MEDIUM, Padding.Vertical.XSMALL);
-
-        // Wrap the links in a list; improves accessibility
         UnorderedList list = new UnorderedList();
         list.addClassNames(Display.FLEX, Gap.SMALL, ListStyleType.NONE, Margin.NONE, Padding.NONE);
         nav.add(list);
-
         for (MenuItemInfo menuItem : createMenuItems()) {
             list.add(menuItem);
-
         }
-
         header.add(layout, nav);
         return header;
     }
