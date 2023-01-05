@@ -7,6 +7,8 @@ import java.io.InputStream;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.JavaScript;
+import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
@@ -16,8 +18,11 @@ import com.vaadin.flow.router.Route;
 import fr.gantoin.views.MainLayout;
 
 
-@PageTitle("Test")
+@PageTitle("Article")
+@JavaScript("js/highlight/highlight.js")
 @Route(value = "article", layout = MainLayout.class)
+@StyleSheet(value = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css")
+@JavaScript(value = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js")
 public class ArticleView extends VerticalLayout implements HasUrlParameter<String> {
 
     public ArticleView() {
@@ -30,6 +35,7 @@ public class ArticleView extends VerticalLayout implements HasUrlParameter<Strin
 
     @Override
     public void setParameter(BeforeEvent event, String parameter) {
+        UI.getCurrent().getPage().executeJs("hljs.highlightAll();");
         String htmlFile = String.format("/tmp/%s.html", parameter);
         InputStream inputStream;
         try {
@@ -37,7 +43,6 @@ public class ArticleView extends VerticalLayout implements HasUrlParameter<Strin
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found");
         }
-        Html html = new Html(inputStream);
-        add(html);
+        add(new Html(inputStream));
     }
 }
