@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.gantoin.domain.CompleteGist;
+import fr.gantoin.domain.JsonNodeAutoCloseable;
 import fr.gantoin.domain.TinyGist;
 
 public class GistFetcher {
@@ -19,19 +20,20 @@ public class GistFetcher {
         List<TinyGist> gists = new ArrayList<>();
         URL url = new URL(GISTS_URL);
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode jsonNode = mapper.readValue(url, JsonNode.class);
-        jsonNode.forEach(child -> {
-            TinyGist tinyGist = new TinyGist();
-            tinyGist.setId(child.get("id").asText());
-            tinyGist.setUrl(child.get("url").asText());
-            tinyGist.setDescription(child.get("description").asText());
-            // format date from 2022-08-22T07:40:50Z to 2022/08/22
-            String date = child.get("created_at").asText();
-            String formattedDate = date.substring(0, 10).replace("-", "/");
-            tinyGist.setCreated_at(formattedDate);
-            tinyGist.setUpdated_at(child.get("updated_at").asText());
-            gists.add(tinyGist);
-        });
+        try (JsonNodeAutoCloseable jsonNode = new JsonNodeAutoCloseable(mapper.readValue(url, JsonNode.class))) {
+            jsonNode.getJsonNode().forEach(child -> {
+                TinyGist tinyGist = new TinyGist();
+                tinyGist.setId(child.get("id").asText());
+                tinyGist.setUrl(child.get("url").asText());
+                tinyGist.setDescription(child.get("description").asText());
+                // format date from 2022-08-22T07:40:50Z to 2022/08/22
+                String date = child.get("created_at").asText();
+                String formattedDate = date.substring(0, 10).replace("-", "/");
+                tinyGist.setCreated_at(formattedDate);
+                tinyGist.setUpdated_at(child.get("updated_at").asText());
+                gists.add(tinyGist);
+            });
+        }
         return gists;
     }
 
