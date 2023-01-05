@@ -1,14 +1,27 @@
+# [START app_yaml]
+# [START runtime]
 runtime: java11
-env: flex
+#instance_class: F2
+# [END runtime]
 
-
-env_variables:
-  SPRING_PROFILES_ACTIVE: "cloud-gcp"
-  TWITTER_BEARER_TOKEN: ""
-
-handlers:
-  - url: /.*
-    script: this field is required, but ignored
-    secure: always
+# [START scaling]
 manual_scaling:
   instances: 1
+# [END scaling]
+
+# [START service]
+service: default
+# [END service]
+
+# [START handlers]
+handlers:
+  # This handler redirects all traffic to https.
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+  # This handler serves the app.
+  - url: /.*
+    script: this field is required, but ignored
+# [END handlers]
+# [END app_yaml]
