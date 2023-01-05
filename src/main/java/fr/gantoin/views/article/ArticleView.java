@@ -19,7 +19,6 @@ import fr.gantoin.views.MainLayout;
 
 
 @PageTitle("Article")
-@JavaScript("js/highlight/highlight.js")
 @Route(value = "article", layout = MainLayout.class)
 @StyleSheet(value = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css")
 @JavaScript(value = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js")
