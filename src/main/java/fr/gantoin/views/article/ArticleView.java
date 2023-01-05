@@ -30,7 +30,7 @@ public class ArticleView extends VerticalLayout implements HasUrlParameter<Strin
 
     @Override
     public void setParameter(BeforeEvent event, String parameter) {
-        String htmlFile = String.format("src/main/resources/META-INF/resources/articles/%s.html", parameter);
+        String htmlFile = String.format("/tmp/%s.html", parameter);
         InputStream inputStream;
         try {
             inputStream = new FileInputStream(htmlFile);

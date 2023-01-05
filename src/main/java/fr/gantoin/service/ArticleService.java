@@ -23,7 +23,7 @@ public class ArticleService {
         tinyGists.forEach(tinyGist -> {
             try {
                 CompleteGist completeGist = GistFetcher.fetchCompleteGist(tinyGist.getId());
-                Path articlePath = Path.of("src/main/resources/META-INF/resources/articles/" + tinyGist.getId());
+                Path articlePath = Path.of("/tmp/" + tinyGist.getId());
                 if (articlePath.toFile().exists()) {
                     return;
                 }
@@ -31,7 +31,7 @@ public class ArticleService {
                 completeGist.setHtml_url(MarkdownConverter.convertToHtml(completeGist.getLocal_yaml_url(),
                         Path.of(articlePath.toFile().getAbsolutePath() + ".html")));
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException("Error while downloading article " + tinyGist.getId(), e);
             }
         });
     }
