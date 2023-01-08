@@ -8,7 +8,7 @@ import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.model.Get2UsersIdTweetsResponse;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -16,7 +16,7 @@ import fr.gantoin.views.MainLayout;
 
 @PageTitle("Twitter")
 @Route(value = "twitter", layout = MainLayout.class)
-public class TwitterView extends VerticalLayout {
+public class TwitterView extends HorizontalLayout {
     public TwitterView() throws ApiException {
         TwitterApi apiInstance = new TwitterApi(new TwitterCredentialsBearer(System.getenv("TWITTER_BEARER_TOKEN")));
         String authorId = "1450558865972633608"; // my twitter id
