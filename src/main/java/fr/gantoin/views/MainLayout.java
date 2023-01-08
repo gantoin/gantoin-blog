@@ -31,35 +31,23 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Whitespace;
 import com.vaadin.flow.theme.lumo.LumoUtility.Width;
 
 import fr.gantoin.views.blog.BlogView;
-import fr.gantoin.views.contactme.ContactmeView;
+import fr.gantoin.views.contactme.ContactMeView;
 import fr.gantoin.views.myprojects.MyProjectsView;
-import fr.gantoin.views.myresume.MyresumeView;
+import fr.gantoin.views.myresume.MyResumeView;
 import fr.gantoin.views.twitter.TwitterView;
 
-/**
- * The main view is a top-level placeholder for other views.
- */
 public class MainLayout extends AppLayout {
 
-    /**
-     * A simple navigation item component, based on ListItem element.
-     */
     public static class MenuItemInfo extends ListItem {
-
         private final Class<? extends Component> view;
 
         public MenuItemInfo(String menuTitle, String iconClass, Class<? extends Component> view) {
             this.view = view;
             RouterLink link = new RouterLink();
-            // Use Lumo classnames for various styling
-            link.addClassNames(Display.FLEX, Gap.XSMALL, Height.MEDIUM, AlignItems.CENTER, Padding.Horizontal.SMALL,
-                    TextColor.BODY);
+            link.addClassNames(Display.FLEX, Gap.XSMALL, Height.MEDIUM, AlignItems.CENTER, Padding.Horizontal.SMALL, TextColor.BODY);
             link.setRoute(view);
-
             Span text = new Span(menuTitle);
-            // Use Lumo classnames for various styling
             text.addClassNames(FontWeight.MEDIUM, FontSize.MEDIUM, Whitespace.NOWRAP);
-
             link.add(new LineAwesomeIcon(iconClass), text);
             add(link);
         }
@@ -87,23 +75,19 @@ public class MainLayout extends AppLayout {
     private Component createHeaderContent() {
         Header header = new Header();
         header.addClassNames(BoxSizing.BORDER, Display.FLEX, FlexDirection.COLUMN, Width.FULL);
-
         Div layout = new Div();
         layout.addClassNames(Display.FLEX, AlignItems.CENTER, Padding.Horizontal.LARGE);
-
         String[] emojis = {"😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "😗", "😙",
                 "😚", "😇", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "😑", "😶", "🙄", "😏", "😣", "😥", "😮", "🤐", "😯", "😪",
                 "😫", "😴", "😌", "😛", "😜", "😝", "🤤", "😒", "😓", "😔", "😕", "🙃", "🤑", "😲", "☹️", "🙁", "😖", "😞",
                 "😟", "😤", "😢", "😭", "😦", "😧", "😨", "😩", "🤯", "😬", "😰", "😱", "😳", "🤪", "😵", "😡", "😠", "🤬",
                 "😷", "🤒", "🤕", "🤢", "🤮", "🤧", "😇", "🤠", "🤡", "🤥", "🤫", "🤭", "🧐", "🤓", "😈", "👿", "👹", "👺",
                 "💀", "👻", "👽", "🤖", "💩", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾"};
-
         String randomEmoji = emojis[new Random().nextInt(emojis.length)]
                 + emojis[new Random().nextInt(emojis.length)]
                 + emojis[new Random().nextInt(emojis.length)]
                 + emojis[new Random().nextInt(emojis.length)]
                 + emojis[new Random().nextInt(emojis.length)];
-
         H1 appName = new H1(randomEmoji + " Antoine Gauthier (");
         Span gantoin = new Span("@gantoin");
         gantoin.addClassNames(TextColor.PRIMARY, FontSize.LARGE, FontWeight.BOLD);
@@ -127,16 +111,10 @@ public class MainLayout extends AppLayout {
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
                 new MenuItemInfo("Blog", "la la-greater-than", BlogView.class), //
-
                 new MenuItemInfo("Twitter", "lab la-twitter", TwitterView.class), //
-
-                new MenuItemInfo("My resume", "la la-file-download", MyresumeView.class), //
-
+                new MenuItemInfo("My resume", "la la-file-download", MyResumeView.class), //
                 new MenuItemInfo("My Projects", "la la-drafting-compass", MyProjectsView.class), //
-
-                new MenuItemInfo("Contact me", "la la-mail-bulk", ContactmeView.class), //
-
+                new MenuItemInfo("Contact me", "la la-mail-bulk", ContactMeView.class), //
         };
     }
-
 }
