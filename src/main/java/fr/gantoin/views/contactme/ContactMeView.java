@@ -57,9 +57,7 @@ public class ContactMeView extends VerticalLayout {
         form.addFormItem(messageField, "Message");
 
         Button submit = new Button("Send message");
-        submit.addClickListener(e -> {
-            System.out.println("Sending message to " + email + " from " + name + " with message: " + message);
-        });
+        submit.addClickListener(e -> System.out.println("Sending message to " + email + " from " + name + " with message: " + message));
         form.addFormItem(submit, "");
 
         add(form);
