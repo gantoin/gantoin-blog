@@ -70,7 +70,7 @@ public class MyFrenchResume {
         Paragraph experience4 = new Paragraph();
         experience4.add(new Hr());
         experience4.add(new BoldParagraphWithPills("Développeur Web",
-                new TechnoPill("Java 11", TechnoPillColorEnum.ORANGE),
+                new TechnoPill("Java 8", TechnoPillColorEnum.ORANGE),
                 new TechnoPill("Spring Boot", TechnoPillColorEnum.BLUE),
                 new TechnoPill("Angular 6", TechnoPillColorEnum.RED)));
         experience4.add(new Paragraph("Ministère de la Justice - Janvier 2018 à Août 2018"));
