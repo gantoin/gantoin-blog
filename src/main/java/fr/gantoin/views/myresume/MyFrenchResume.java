@@ -7,12 +7,17 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.UnorderedList;
 
 import fr.gantoin.domain.BoldParagraph;
+import fr.gantoin.domain.BoldParagraphWithPills;
+import fr.gantoin.domain.TechnoPill;
+import fr.gantoin.domain.TechnoPillColorEnum;
 
 public class MyFrenchResume {
 
     public static Paragraph getFrenchExperiences() {
         Paragraph experience = new Paragraph();
-        experience.add(new BoldParagraph("Développeur Java/SQL"));
+        experience.add(new BoldParagraphWithPills("Développeur Java/SQL",
+                new TechnoPill("Java 11", TechnoPillColorEnum.ORANGE),
+                new TechnoPill("Spring", TechnoPillColorEnum.BLUE)));
         experience.add(new Paragraph("SAP Concur - Janvier 2022 à Décembre 2022"));
         experience.add(new BoldParagraph("Projet :"), new ListItem("Développement d’une application de gestion de déménagements et d'indemnités"));
         experience.add(new BoldParagraph("Missions :"),
@@ -27,7 +32,10 @@ public class MyFrenchResume {
         );
         Paragraph experience2 = new Paragraph();
         experience2.add(new Hr());
-        experience2.add(new BoldParagraph("Développeur Backend"));
+        experience2.add(new BoldParagraphWithPills("Développeur Backend",
+                new TechnoPill("Java 11", TechnoPillColorEnum.ORANGE),
+                new TechnoPill("Micro-services", TechnoPillColorEnum.BLUE),
+                new TechnoPill("Apache Kafka", TechnoPillColorEnum.GREEN)));
         experience2.add(new Paragraph("Doubletrade - Juillet 2019 à Janvier 2022"));
         experience2.add(new BoldParagraph("Projet :"), new ListItem("SaaS de veille et étude de marchés publics"));
         experience2.add(new BoldParagraph("Missions :"),
@@ -47,7 +55,10 @@ public class MyFrenchResume {
         );
         Paragraph experience3 = new Paragraph();
         experience3.add(new Hr());
-        experience3.add(new BoldParagraph("Développeur Full Stack"));
+        experience3.add(new BoldParagraphWithPills("Développeur Full Stack",
+                new TechnoPill("Java 11", TechnoPillColorEnum.ORANGE),
+                new TechnoPill("Spring Boot", TechnoPillColorEnum.BLUE),
+                new TechnoPill("Angular 8", TechnoPillColorEnum.RED)));
         experience3.add(new Paragraph("Wemoov - Avril 2019 à Juillet 2019"));
         experience3.add(new BoldParagraph("Projet :"), new ListItem("Développements et conception d'une application mobile au sein du pôle recherche et développement"));
         experience3.add(new BoldParagraph("Missions :"),
@@ -58,7 +69,10 @@ public class MyFrenchResume {
         );
         Paragraph experience4 = new Paragraph();
         experience4.add(new Hr());
-        experience4.add(new BoldParagraph("Développeur Web"));
+        experience4.add(new BoldParagraphWithPills("Développeur Web",
+                new TechnoPill("Java 11", TechnoPillColorEnum.ORANGE),
+                new TechnoPill("Spring Boot", TechnoPillColorEnum.BLUE),
+                new TechnoPill("Angular 6", TechnoPillColorEnum.RED)));
         experience4.add(new Paragraph("Ministère de la Justice - Janvier 2018 à Août 2018"));
         experience4.add(new BoldParagraph("Projet :"), new ListItem("Refonte d’applications internes, collecte de données des administrations pour produire des statistiques"));
         experience4.add(new BoldParagraph("Missions :"),
