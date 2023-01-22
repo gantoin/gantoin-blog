@@ -5,7 +5,7 @@ WORKDIR $HOME
 ADD . $HOME
 RUN mvn clean package -Pproduction -DnodeVersion="v10.16.0"
 
-FROM openjdk:11-jdk-slim
+FROM openjdk:11.0.16-jdk-slim
 COPY $HOME/target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app.jar"]
