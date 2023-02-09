@@ -10,7 +10,7 @@
 
   <properties>
     <java.version>11</java.version>
-    <vaadin.version>23.3.2</vaadin.version>
+    <vaadin.version>23.3.6</vaadin.version>
     <selenium.version>4.5.3</selenium.version>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
